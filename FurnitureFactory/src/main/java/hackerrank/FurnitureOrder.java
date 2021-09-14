@@ -31,21 +31,33 @@ Private final HashMap<Furniture, Integer> furnitures;
 
     public float getTotalOrderCost() {
         // TODO: Complete the method
+        if(furnitures.isEmpty()){
+        return furnitures.entrySet().stream().map(f -> f.getkey().cost() * f.getValue()).collect(Collectors.toList()).stream().reduce(Float::sum).get();
         return -1.0f;
     }
 
     public int getTypeCount(Furniture type) {
         // TODO: Complete the method
-        return -1;
+        if(furnitures.containsKey(type)){
+        return furnitures.get(type);
+        }
+        return 0;
     }
 
     public float getTypeCost(Furniture type) {
         // TODO: Complete the method
-        return -1.0f;
+        if(furnitures.containsKey(type)){
+        return furnitures.get(type)*type.cost();
+        }
+        return 0.0f;
     }
 
     public int getTotalOrderQuantity() {
         // TODO: Complete the method
-        return -1;
+        if(furnitures.isEmpty()){
+        return furnitures.values().stream().reduce(Integer::sum).get();
+                                  
+        }
+        return 0;
     }
 }
